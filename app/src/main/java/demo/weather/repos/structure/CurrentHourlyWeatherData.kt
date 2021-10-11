@@ -1,12 +1,13 @@
 package demo.weather.repos.structure
 
+import androidx.annotation.Keep
 
+@Keep
 data class CurrentHourlyWeatherData(
     val current: WeatherData,
     val hourly: ArrayList<WeatherData>,
 )
-
-
+@Keep
 data class WeatherData(
     val dt: Long,
     val temp: String,
@@ -18,7 +19,7 @@ data class WeatherData(
     val weather: ArrayList<WeatherIconData>
 )
 
-
+@Keep
 data class WeatherIconData(
     val icon: String,
     val description: String,

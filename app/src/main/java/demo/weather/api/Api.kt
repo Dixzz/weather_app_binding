@@ -14,8 +14,9 @@ interface Api {
         @Query("lat") latitude: Double,
         @Query("lon") longitude: Double,
     ): Call<CurrentHourlyWeatherData>
-    @GET("/data/2.5/onecall")
 
+
+    @GET("/data/2.5/onecall")
     fun getForecastDaily(
         @Query("exclude") exclude: List<String>,
         @Query("lat") latitude: Double,

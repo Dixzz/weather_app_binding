@@ -131,9 +131,10 @@ open class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding:
                 longitude = it.longitude
             )
                 .enqueue(CallbackRetro<CurrentHourlyWeatherData, CurrentHourlyWeatherData>().addQuickCall {
-                    val body = it.body()!!
-                    viewmodel.currentLiveWeatherData.postValue(body.current)
-                    viewmodel.hourlyLiveWeatherData.postValue(body.hourly)
+                    it.body()?.let {
+                        viewmodel.currentLiveWeatherData.postValue(it.current)
+                        viewmodel.hourlyLiveWeatherData.postValue(it.hourly)
+                    }
                 })
             networkRequest.client.getForecastDaily(
                 exclude = listOf("minutely,alerts,current,hourly"),
@@ -141,7 +142,9 @@ open class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding:
                 longitude = it.longitude
             )
                 .enqueue(CallbackRetro<DailyWeatherData, DailyWeatherData>().addQuickCall {
-                    viewmodel.dailyLiveWeatherData.postValue(it.body()!!.daily)
+                    it.body()?.let {
+                        viewmodel.dailyLiveWeatherData.postValue(it.daily)
+                    }
                 })
         }
         if (!locationServices.isProviderEnabled(LocationManager.GPS_PROVIDER)) {

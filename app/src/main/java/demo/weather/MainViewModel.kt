@@ -1,11 +1,12 @@
 package demo.weather
 
 import android.location.Location
+import androidx.annotation.Keep
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import demo.weather.repos.structure.WeatherData
 import demo.weather.repos.structure.WeatherData2
-
+@Keep
 class MainViewModel : ViewModel() {
     val locationLiveData = MutableLiveData<Location>()
     val currentLiveWeatherData = MutableLiveData<WeatherData>()
